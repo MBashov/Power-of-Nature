@@ -11,5 +11,17 @@ export default {
 
     getOne(eventId) {
         return Disaster.findById(eventId);
+    },
+
+    async delete(eventId, userId) {
+        const event = await this.getOne(eventId);
+
+        const owner = event.owner.equals(userId);
+        
+        if (!owner) {
+            throw new Error('You are not authorized for this action!');
+        }
+        
+        return Disaster.findByIdAndDelete(eventId);
     }
 }

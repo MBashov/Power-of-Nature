@@ -24,7 +24,7 @@ eventController.get('/:eventId/details', async (req, res) => {
 
         const owner = event.owner.equals(req.user?.id);
         const isInterested = event.interestedList.includes(req.user?.id);
-        
+
         res.render('disaster/details', { event, owner, isInterested });
     } catch (err) {
         //TODO: Error handling
@@ -46,6 +46,18 @@ eventController.post('/create', isAuth, async (req, res) => {
         const types = getDisasterTypes(eventData.disasterType);
 
         res.render('disaster/create', { eventData, types, error: getErrorMessage(err) });
+    }
+});
+
+eventController.get('/:eventId/delete', isAuth, async (req, res) => {
+    const eventId = req.params.eventId;
+    const userId = req.user.id;
+    try {
+        await eventService.delete(eventId, userId);
+        res.redirect('/events/catalog');
+    } catch (err) {
+        res.setError(getErrorMessage(err));
+        res.redirect(`/events/${eventId}/details`);
     }
 });
 
