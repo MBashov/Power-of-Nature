@@ -6,6 +6,16 @@ import { getErrorMessage } from "../utils/errorUtils.js";
 
 const eventController = Router();
 
+eventController.get('/catalog', async (req, res) => {
+
+    try {
+        const events = await eventService.getAll();
+        res.render('disaster/catalog', { events });
+    } catch (err) {
+        //TODO: Error handling
+    }
+});
+
 eventController.get('/create', isAuth, (req, res) => {
     const types = getDisasterTypes();
     res.render('disaster/create', { types });
@@ -23,5 +33,6 @@ eventController.post('/create', isAuth, async (req, res) => {
         res.render('disaster/create', { eventData, types, error: getErrorMessage(err) });
     }
 });
+
 
 export default eventController;
