@@ -12,7 +12,8 @@ eventController.get('/catalog', async (req, res) => {
         const events = await eventService.getAll();
         res.render('disaster/catalog', { events });
     } catch (err) {
-        //TODO: Error handling
+        res.setError(getErrorMessage(err));
+        res.redirect('/404');
     }
 });
 
@@ -27,7 +28,8 @@ eventController.get('/:eventId/details', async (req, res) => {
 
         res.render('disaster/details', { event, owner, isInterested });
     } catch (err) {
-        //TODO: Error handling
+        res.setError(getErrorMessage(err));
+        res.redirect('/404');
     }
 });
 
@@ -38,7 +40,6 @@ eventController.get('/create', isAuth, (req, res) => {
 
 eventController.post('/create', isAuth, async (req, res) => {
     const eventData = req.body;
-    console.log(eventData);
     
     try {
         await eventService.create(eventData, req.user.id);
@@ -78,7 +79,8 @@ eventController.get('/:eventId/edit', isAuth, async (req, res) => {
 
         res.render('disaster/edit', { event, types });
     } catch (err) {
-        //TODO Error handling
+        res.setError(getErrorMessage(err));
+        res.redirect('/404');
     }
 });
 
@@ -128,7 +130,8 @@ eventController.get('/search', async (req, res) => {
         
         res.render('disaster/search', { events, name,  types});
     } catch (err) {
-        //TODO Error handling
+        res.setError(getErrorMessage(err));
+        res.redirect('/404');
     }
 });
 

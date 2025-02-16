@@ -10,7 +10,6 @@ import { tempData } from "./middlewares/tempDataMiddleware.js";
 
 const app = express();
 
-//* Db set up
 try {
     await mongoose.connect('mongodb://localhost:27017/Power-of-Nature');
     console.log('DB conected succesfully!');
@@ -19,7 +18,6 @@ try {
     console.error(err.message);
 }
 
-//* Handlebars set up
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
     runtimeOptions: {
@@ -34,11 +32,8 @@ app.engine('hbs', handlebars.engine({
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
 
-
-
-//* Express set up
 app.use(express.static('src/public'));
-app.use(express.urlencoded({ extended: false })); // Learn express to parse form data
+app.use(express.urlencoded({ extended: false })); 
 app.use(cookieParser());
 app.use(expressSession({
     secret: '$2b$10$KeohpPQ4M6i23G/d4I768uplZM2/8sdRC5/gYaBDLddkd.Aizd/ssd',
@@ -50,5 +45,4 @@ app.use(auth);
 app.use(tempData);
 app.use(routes);
 
-//* Start express
 app.listen(3000, () => console.log('Server is listening on http://localhost:3000...'));
