@@ -21,7 +21,11 @@ eventController.get('/:eventId/details', async (req, res) => {
 
     try {
         const event = await eventService.getOne(eventId);
-        res.render('disaster/details', { event });
+
+        const owner = event.owner.equals(req.user?.id);
+        const isInterested = event.interestedList.includes(req.user?.id);
+        
+        res.render('disaster/details', { event, owner, isInterested });
     } catch (err) {
         //TODO: Error handling
     }
