@@ -1,0 +1,27 @@
+{{setTitle 'Search'}}
+
+<section class="event-search">
+    <h1 id="title">Search</h1>
+
+    <form class="search-form" method="GET">
+        <input type="text" class="search-event" name="name" placeholder="Search by Name..." value="{{name}}">
+        <select id="type" name="disasterType">
+            {{>types}}
+        </select>
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+    {{#if events}}
+    <div class="search-result">
+        <div class="search-list">
+
+            {{#each events}}
+            {{>event}}
+            {{/each}}
+
+        </div>
+        {{else}}
+        <div class="no-match">
+            <p>No match was found!</p>
+        </div>
+        {{/if}}
+</section>

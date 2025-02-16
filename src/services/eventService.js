@@ -5,8 +5,18 @@ export default {
         return Disaster.create({ ...eventData, owner: userId });
     },
 
-    getAll() {
-        return Disaster.find({}).select({ name: true, location: true, disasterType: true, image: true });
+    getAll(filter = {}) {
+        let query = Disaster.find({}).select({ name: true, location: true, disasterType: true, image: true });
+
+        if (filter.name) {
+            query = query.find({ name: { $regex: filter.name, $options: 'i' } }).select({ name: true, location: true, disasterType: true, image: true });
+        }
+
+        if (filter.disasterType) {
+            query = query.find({ disasterType: filter.disasterType }).select({ name: true, location: true, disasterType: true, image: true });
+        }
+
+        return query;
     },
 
     getOne(eventId) {
@@ -26,7 +36,7 @@ export default {
         }
 
         return Disaster.findByIdAndDelete(eventId);
-    }, 
+    },
 
     async interest(userId, eventId) {
         const event = await this.getOne(eventId);

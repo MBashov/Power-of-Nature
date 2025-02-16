@@ -38,7 +38,8 @@ eventController.get('/create', isAuth, (req, res) => {
 
 eventController.post('/create', isAuth, async (req, res) => {
     const eventData = req.body;
-
+    console.log(eventData);
+    
     try {
         await eventService.create(eventData, req.user.id);
         res.redirect('/events/catalog');
@@ -98,13 +99,13 @@ eventController.post('/:eventId/edit', isAuth, async (req, res) => {
         res.redirect(`/events/${eventId}/details`);
     } catch (err) {
         console.log(err);
-        
+
         const types = getDisasterTypes(eventData.disasterType);
         res.render('disaster/edit', { event: eventData, types, error: getErrorMessage(err) });
     }
 });
 
-eventController.get('/:eventId/interest',isAuth, async (req, res) => {
+eventController.get('/:eventId/interest', isAuth, async (req, res) => {
     const eventId = req.params.eventId;
 
     try {
@@ -112,8 +113,23 @@ eventController.get('/:eventId/interest',isAuth, async (req, res) => {
     } catch (err) {
         res.setError(getErrorMessage(err));
     }
-    
+
     res.redirect(`/events/${eventId}/details`);
+});
+
+eventController.get('/search', async (req, res) => {
+
+    const { name, disasterType } = req.query;
+    
+    try {
+        const events = await eventService.getAll({ name, disasterType });
+
+        const types = getDisasterTypes(disasterType);
+        
+        res.render('disaster/search', { events, name,  types});
+    } catch (err) {
+        //TODO Error handling
+    }
 });
 
 export default eventController;
