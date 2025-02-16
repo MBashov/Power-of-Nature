@@ -31,7 +31,7 @@ export default {
         const user = await User.findOne({ email: userData.email }).select({ _id: true });
 
         if (user) {
-            throw new Error('Email already exist!');
+            throw new Error('User with this email already exist!');
         }
 
         const createdUser = await User.create(userData);
