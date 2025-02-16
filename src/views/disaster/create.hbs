@@ -4,25 +4,21 @@
         <h1>Create Event</h1>
         <form method="POST">
             <label>Name of the Disaster:</label>
-            <input type="text" id="name" name="" placeholder="...">
+            <input type="text" id="name" name="name" placeholder="..." value="{{eventData.name}}">
             <label>Type of Disaster:</label>
-            <select id="type" name="">
-                <option value="Wildfire">Wildfire</option>
-                <option value="Flood">Flood</option>
-                <option value="Earthquake">Earthquake</option>
-                <option value="Hurricane">Hurricane</option>
-                <option value="Drought">Drought</option>
-                <option value="Tsunami">Tsunami</option>
-                <option value="Other">Other</option>
+            <select id="type" name="disasterType">
+                {{#each types}}
+                <option value="{{value}}" {{selected}}>{{label}}</option>
+               {{/each}}
             </select>
             <label>Year of the Event:</label>
-            <input type="number" id="year" name="" placeholder="...">
+            <input type="number" id="year" name="year" placeholder="..." value="{{eventData.year}}">
             <label>Location:</label>
-            <input type="text" id="location" name="" placeholder="...">
+            <input type="text" id="location" name="location" placeholder="..." value="{{eventData.location}}">
             <label>Image:</label>
-            <input type="text" id="image" name="" placeholder="http://...">
+            <input type="text" id="image" name="image" placeholder="http://..." value="{{eventData.image}}">
             <label>Description:</label>
-            <textarea id="description" name="" placeholder="..."></textarea>
+            <textarea id="description" name="description" placeholder="..." value="{{eventData.description}}"></textarea>
             <input type="submit" id="btn" value="Submit"></input>
         </form>
     </div>

@@ -1,8 +1,8 @@
 import express from "express";
 import handlebars from 'express-handlebars';
 import mongoose from "mongoose";
-import cookieParser from 'cookie-parser'; 
-import expressSession from 'express-session';  
+import cookieParser from 'cookie-parser';
+import expressSession from 'express-session';
 
 import routes from "./routes.js";
 import { auth } from './middlewares/authMiddleware.js';

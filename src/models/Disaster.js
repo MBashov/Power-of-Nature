@@ -6,7 +6,7 @@ const disasterSchema = new Schema({
         required: [true, 'Name is required!'],
         minLength: [2, 'Name should be at least 2 characters'],
     },
-    type : {
+    disasterType : {
         type: String,
         required: [true, 'Type of disaster is required!'],
         enum: ["Wildfire", "Flood", "Earthquake", "Hurricane", "Drought", "Tsunami", "Other"],
