@@ -16,6 +16,17 @@ eventController.get('/catalog', async (req, res) => {
     }
 });
 
+eventController.get('/:eventId/details', async (req, res) => {
+    const eventId = req.params.eventId;
+
+    try {
+        const event = await eventService.getOne(eventId);
+        res.render('disaster/details', { event });
+    } catch (err) {
+        //TODO: Error handling
+    }
+});
+
 eventController.get('/create', isAuth, (req, res) => {
     const types = getDisasterTypes();
     res.render('disaster/create', { types });

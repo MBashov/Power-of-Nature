@@ -7,5 +7,9 @@ export default {
 
     getAll() {
         return Disaster.find({}).select({ name: true, location: true, disasterType: true, image: true });
+    },
+
+    getOne(eventId) {
+        return Disaster.findById(eventId);
     }
 }
