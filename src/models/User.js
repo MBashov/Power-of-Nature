@@ -1,7 +1,6 @@
 import { Schema, model } from "mongoose";
 import bcrypt from 'bcrypt';
 
-// TODO: Modify user Schema
 const userSchema = new Schema({
     username: {
         type: String,
@@ -18,7 +17,6 @@ const userSchema = new Schema({
 });
 
 userSchema.pre('save', async function () {
-    //TODO: See await if its undrerline 
     this.password = await bcrypt.hash(this.password, 10); 
 });
 
