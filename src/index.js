@@ -12,8 +12,7 @@ const app = express();
 
 //* Db set up
 try {
-    // TODO: Change db name 
-    await mongoose.connect('mongodb://localhost:27017/Exam');
+    await mongoose.connect('mongodb://localhost:27017/Power-of-Nature');
     console.log('DB conected succesfully!');
 } catch (err) {
     console.log('Cannot conect to DB!');
