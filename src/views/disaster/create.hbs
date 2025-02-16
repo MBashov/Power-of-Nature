@@ -7,9 +7,7 @@
             <input type="text" id="name" name="name" placeholder="..." value="{{eventData.name}}">
             <label>Type of Disaster:</label>
             <select id="type" name="disasterType">
-                {{#each types}}
-                <option value="{{value}}" {{selected}}>{{label}}</option>
-               {{/each}}
+                {{>types}}
             </select>
             <label>Year of the Event:</label>
             <input type="number" id="year" name="year" placeholder="..." value="{{eventData.year}}">

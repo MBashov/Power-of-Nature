@@ -52,12 +52,32 @@ eventController.post('/create', isAuth, async (req, res) => {
 eventController.get('/:eventId/delete', isAuth, async (req, res) => {
     const eventId = req.params.eventId;
     const userId = req.user.id;
+
     try {
         await eventService.delete(eventId, userId);
         res.redirect('/events/catalog');
     } catch (err) {
         res.setError(getErrorMessage(err));
         res.redirect(`/events/${eventId}/details`);
+    }
+});
+
+eventController.get('/:eventId/edit', isAuth, async (req, res) => {
+    const eventId = req.params.eventId;
+
+    try {
+        const event = await eventService.getOne(eventId);
+        const types = getDisasterTypes(event.disasterType);
+
+        const isOwner = event.owner.equals(req.user.id);
+        if (!isOwner) {
+            res.setError('You are not authorized for this action!');
+            return res.redirect(`/events/${eventId}/details`);
+        }
+        
+        res.render('disaster/edit', { event, types });
+    } catch (err) {
+        //TODO Error handling
     }
 });
 
