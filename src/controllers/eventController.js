@@ -104,5 +104,16 @@ eventController.post('/:eventId/edit', isAuth, async (req, res) => {
     }
 });
 
+eventController.get('/:eventId/interest',isAuth, async (req, res) => {
+    const eventId = req.params.eventId;
+
+    try {
+        await eventService.interest(req.user.id, eventId);
+    } catch (err) {
+        res.setError(getErrorMessage(err));
+    }
+    
+    res.redirect(`/events/${eventId}/details`);
+});
 
 export default eventController;
