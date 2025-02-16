@@ -14,8 +14,8 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="events/search">Search</a></li>
-                <li><a href="events/catalog">Power of Nature</a></li>
+                <li><a href="/events/search">Search</a></li>
+                <li><a href="/events/catalog">Power of Nature</a></li>
                 {{#if user}}
                 <li><a href="/events/create">Create Event</a></li>
                 <li><a href="/auth/logout">Logout</a></li>
@@ -37,10 +37,11 @@
         {{/if}}
 
         {{{body}}}
+    </main>
 
-        <footer>
-            <p>&copy JS Back-End 2025</p>
-        </footer>
+    <footer>
+        <p>&copy JS Back-End 2025</p>
+    </footer>
 
 </body>
 
