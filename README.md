@@ -1,6 +1,5 @@
-# Power-Of-Nature
-## SoftUni JS Back-End Exam Task
-### Key Technologies and Features 
+# SoftUni JS Back-End Exam Task
+## Key Technologies and Features 
 * Node.js Streams and Utilities
 Utilize Node.js streams to efficiently handle I/O operations, allowing for better memory management and performance in data processing. Common utilities are included to simplify common tasks and boost productivity.
 
