@@ -13,15 +13,19 @@ export default {
         return Disaster.findById(eventId);
     },
 
+    edit(eventId, eventData) {
+        return Disaster.findByIdAndUpdate(eventId, eventData, { runValidators: true });
+    },
+
     async delete(eventId, userId) {
         const event = await this.getOne(eventId);
 
         const owner = event.owner.equals(userId);
-        
+
         if (!owner) {
             throw new Error('You are not authorized for this action!');
         }
-        
+
         return Disaster.findByIdAndDelete(eventId);
     }
 }

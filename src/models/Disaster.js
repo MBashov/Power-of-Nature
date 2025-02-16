@@ -19,7 +19,7 @@ const disasterSchema = new Schema({
     },
     location: {
         type: String,
-        required: [true, 'Location type is required!'],
+        required: [true, 'Location is required!'],
         minLength: [3, 'Location should be at least 3 characters'],
     },
     image: {

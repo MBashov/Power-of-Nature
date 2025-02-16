@@ -74,10 +74,33 @@ eventController.get('/:eventId/edit', isAuth, async (req, res) => {
             res.setError('You are not authorized for this action!');
             return res.redirect(`/events/${eventId}/details`);
         }
-        
+
         res.render('disaster/edit', { event, types });
     } catch (err) {
         //TODO Error handling
+    }
+});
+
+eventController.post('/:eventId/edit', isAuth, async (req, res) => {
+    const eventId = req.params.eventId;
+    const eventData = req.body;
+
+    try {
+        const event = await eventService.getOne(eventId);
+
+        const isOwner = event.owner.equals(req.user.id);
+        if (!isOwner) {
+            res.setError('You are not authorized for this action!');
+            return res.redirect(`/events/${eventId}/details`);
+        }
+
+        await eventService.edit(eventId, eventData);
+        res.redirect(`/events/${eventId}/details`);
+    } catch (err) {
+        console.log(err);
+        
+        const types = getDisasterTypes(eventData.disasterType);
+        res.render('disaster/edit', { event: eventData, types, error: getErrorMessage(err) });
     }
 });
 
