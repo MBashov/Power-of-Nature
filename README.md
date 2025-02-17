@@ -2,7 +2,7 @@
 
 ## SoftUni JS Back-End Exam Task 📝
 
-This project is aimed at creating an application for the **Power of Nature** – specifically, past disasters. Visitors can **view** the **Home** page and the **Power of Nature (Catalog)** page, which displays available **disasters**. The app is built using **Node.js** and **MongoDB**.
+This project is aimed at creating an application for the **Power of Nature** 🌍– specifically, past disasters🌋🌊🌪️. Visitors can **view** the **Home** page and the **Power of Nature (Catalog)** page, which displays available **disasters**. The app is built using **Node.js** and **MongoDB**.
 
 **Note**: The HTML and CSS for this project were provided by the university as part of the course materials.
 
@@ -51,8 +51,8 @@ Here are the main features of the **Power-of-Nature** app:
 
 - **User Authentication**: Users can sign up and log in to access personalized content.
 - **Authorization**: Access to certain features is restricted to authorized users only.
-- **Post Management**: Users can **add, edit**, and **delete** their posts at any time.
-- **Search Functionality**: Easily filter all **matches** by **name** and **type** using a **search string** (case-insensitive).
+- **Disaster Management**: Users can **add, edit**, and **delete** their disasters records at any time.
+- **Search Functionality**: Easily filter all disasters  by **name** and **type** using a **case-insensitive** search string.
 
 ---
 
@@ -66,10 +66,10 @@ This project uses the following technologies:
 - **Handlebars**: Templating engine for rendering dynamic content on the frontend.
 - **CSS**: Styling for the app's user interface (provided by the university).
 - **HTML**: Structure for the web pages (provided by the university).
-
 ---
+The following section highlights some of the key concepts and tools covered in the **SoftUni JavaScript Back-End course** that have been implemented in this project.  
 
-## SoftUni JS Back-End Course Key Technologies and Features
+## SoftUni JS Back-End Course Key Technologies and Features  
 
 Here’s an overview of key technologies and features covered in this course:
 
